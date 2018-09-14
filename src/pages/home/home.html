@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{title}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-searchbar [(ngModel)]="terms"></ion-searchbar>
+    <button ion-button type="button" (click)="sort()">Sort</button>
+
+  <ion-list>
+    <ion-item-sliding #slidingItem *ngFor="let pedido of pedidos | search : terms | sort: {property: column, order: order}" [ngClass]="pedido.status">
+        <ion-item>
+          <h2>{{pedido.name}}</h2>
+          <p>{{pedido.detail}}</p>
+        </ion-item>
+
+        <ion-item-options side="right">
+          <button (click)="editar(pedido,slidingItem)" ion-button color="secondary" large>
+            <ion-icon name="create"></ion-icon>
+          </button>
+          <button (click)="delete(pedido,slidingItem)" ion-button color="danger" large>
+            <ion-icon name="trash"></ion-icon>
+          </button>
+
+          
+          <button (click)= "goToPedido()" ion-button color="light" large>
+              <ion-icon name="information-circle"></ion-icon>
+            </button>
+          
+
+        </ion-item-options>
+
+    </ion-item-sliding>
+    <ion-item></ion-item>
+  </ion-list>
+  <ion-fab right bottom>
+      <button ion-fab (click)="goToPedido()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+  </ion-fab>
+  
+
+</ion-content>

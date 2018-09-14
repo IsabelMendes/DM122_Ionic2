@@ -1,0 +1,36 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Pedidos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-col width-100>
+      <ion-list>
+        <form (ngSubmit)="salvar()">
+            <ion-item>
+              <ion-label>Pedido</ion-label>
+              <ion-input [(ngModel)]="pedido.name" name="name" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Detalhes</ion-label>
+              <ion-input [(ngModel)]="pedido.detail" name="detail" type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Status</ion-label>
+            <ion-select [(ngModel)]="selectedStatus" name="selectedStatus">
+                <ion-option [value]="p" *ngFor="let p of status">
+                    {{p}}
+                </ion-option>
+              </ion-select>
+            </ion-item>
+            <button ion-button type="submit">Salvar</button>
+        </form>
+      </ion-list>
+
+    </ion-col>
+  </ion-grid>
+</ion-content>
